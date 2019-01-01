@@ -3,7 +3,6 @@ import { CalculationService } from './calculation.service';
 
 describe('CalculationService', () => {
   let service: CalculationService;
-  
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [CalculationService],
