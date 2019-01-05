@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Substract } from './model/add.model';
+import { SubstractDto } from './model/add.model';
 
 @Injectable()
 export class CalculateService {
@@ -7,7 +7,7 @@ export class CalculateService {
         return number * number;
     }
 
-    public substract(subtractObj: Substract) {
+    public substract(subtractObj: SubstractDto) {
         return subtractObj.subtrahend - subtractObj.minuend;
     }
 }

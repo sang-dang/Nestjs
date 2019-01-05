@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { CalculateService } from './caculate.service';
-import { Substract } from './model/add.model';
+import { SubstractDto } from './model/add.model';
+import { ApiResponse } from '@nestjs/swagger';
 
 @Controller()
 
@@ -13,7 +14,9 @@ export class CalculateController {
     }
 
     @Post('/substract')
-    addNumber(@Body() req: Substract) {
+    @ApiResponse({ status: 201, description: 'The record has been successfully created.'})
+    @ApiResponse({ status: 403, description: 'Forbidden.'})
+    addNumber(@Body() req: SubstractDto) {
         return this.calculateService.substract(req);
     }
 }

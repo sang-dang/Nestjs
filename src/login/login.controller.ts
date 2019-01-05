@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
-import { Ilogin } from './login.model';
+import { LoginDto } from './login.model';
 import { LoginService } from './login.service';
 
 @Controller()
@@ -11,7 +11,7 @@ export class LoginController {
   }
 
   @Post('/login')
-  log(@Body() req: Ilogin) {
+  log(@Body() req: LoginDto) {
     return this.loginService.getIn(req);
   }
 }

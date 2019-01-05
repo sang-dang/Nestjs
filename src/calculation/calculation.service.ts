@@ -1,9 +1,9 @@
-import { NUMBER } from './../../API/number';
+
 import { Injectable, HttpException } from '@nestjs/common';
 
 @Injectable()
 export class CalculationService {
-  number = NUMBER;
+  number = [];
   getNumber() {
     return this.number;
   }
