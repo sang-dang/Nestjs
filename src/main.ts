@@ -11,6 +11,7 @@ async function bootstrap() {
     .setDescription('The shopping online API descripttion')
     .setVersion('1.0')
     .addTag('Shopping')
+    .setSchemes('https')
     .build();
 
   const document = SwaggerModule.createDocument(app, opttions);
