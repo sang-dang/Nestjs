@@ -1,33 +1,13 @@
-FROM node:carbon-alpine as production-dependencies
-WORKDIR /nestjs/cli
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-RUN npm install --production
 
-FROM node:carbon-alpine as build-dependencies
-WORKDIR /nestjs/cli
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-RUN npm install
+FROM node:9.3.0-slim
 
-FROM node:carbon-alpine as tester
-WORKDIR /nestjs/cli
-COPY --from=build-dependencies /nestjs/cli/node_modules node_modules
-COPY . .
+WORKDIR /app
 
-FROM node:carbon-alpine as builder
-WORKDIR /nestjs/cli
-COPY --from=build-dependencies /nestjs/cli/node_modules node_modules
-COPY . .
-RUN npm run -s build
+COPY package.json /app
+RUN npm install 
 
-FROM node:carbon-alpine
-RUN npm install -g yarn && \
-  chmod 774 /usr/local/bin/yarnpkg /usr/local/bin/yarn
-WORKDIR /nestjs/cli
+COPY . /app
 
-RUN npm link
-WORKDIR /workspace
-EXPOSE 3000
-VOLUME [ "/workspace" ]
-CMD [ "/bin/sh" ]
+CMD npm start
+
+EXPOSE 3333
